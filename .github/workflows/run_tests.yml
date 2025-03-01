@@ -1,0 +1,62 @@
+name: Run the tests
+
+on: [pull_request]
+
+env:
+  EXAMPLES_FOLDER: examples
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, macos-13, windows-latest]
+        include:
+          - os: ubuntu-latest
+            label: linux-64
+            prefix: /usr/share/miniconda3/envs/project_template
+          - os: macos-latest
+            label: osx-arm64
+            prefix: /Users/runner/miniconda3/envs/project_template
+          - os: macos-13
+            label: osx-intel
+            prefix: /Users/runner/miniconda3/envs/project_template
+          - os: windows-latest
+            label: win-64
+            prefix: C:\Miniconda3\envs\project_template
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install test dependencies
+        run: pip install pytest pytest-cov codecov
+
+      - name: Run tests with code coverage
+        run: pytest -v --color=yes --cov-branch --cov-report=xml --cov=project_template tests
+        if: matrix.os == 'ubuntu-latest'
+        
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: true
+          verbose: true
+        if: matrix.os == 'ubuntu-latest'
+          
+      - name: Test installed version of python
+        run: | 
+          BASE_FOLDER=`pwd`
+          pip install .
+          cd
+          python -c "import project_template"
+          cd $BASE_FOLDER
+
