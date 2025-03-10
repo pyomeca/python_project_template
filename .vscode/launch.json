@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Print version",
+            "name": "Use adder",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/examples/print_version.py",
+            "program": "${workspaceFolder}/examples/use_adder.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "env": {"PYTHONPATH": "${workspaceFolder}"},
