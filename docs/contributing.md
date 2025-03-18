@@ -16,7 +16,7 @@ git clone https://github.com/your-user-name/python_project_template.git
 ## Creating and activating conda environment
 
 Before starting any development, we recommend that you create an isolated development environment. 
-The easiest and most efficient way (due to the numerous dependencies of `project_template`) is to use an anaconda virtual environment and to create it based on the `environment.yml` file. 
+The easiest and most efficient way is to use an anaconda virtual environment and install `habmot` using pip install, then uninstall it so its dependencies are installed.
 
 - Install [miniconda](https://conda.io/miniconda.html)
 - `cd` to the `project_template` source directory
@@ -25,6 +25,8 @@ The easiest and most efficient way (due to the numerous dependencies of `project
 ```bash
 conda env create -f environment.yml
 conda activate project_template
+conda install pip -cconda-forge
+pip install . && pip uninstall -y project_template
 ```
 
 ## Implementing new features

@@ -13,16 +13,12 @@ jobs:
         include:
           - os: ubuntu-latest
             label: linux-64
-            prefix: /usr/share/miniconda3/envs/project_template
           - os: macos-latest
             label: osx-arm64
-            prefix: /Users/runner/miniconda3/envs/project_template
           - os: macos-13
             label: osx-intel
-            prefix: /Users/runner/miniconda3/envs/project_template
           - os: windows-latest
             label: win-64
-            prefix: C:\Miniconda3\envs\project_template
     name: ${{ matrix.label }}
     runs-on: ${{ matrix.os }}
     defaults:
