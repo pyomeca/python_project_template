@@ -22,6 +22,7 @@ dependencies = [
     "numpy", 
 ]
 
+# Any dev dependencies can go here. Also, if a package is not available on pip, it should be referenced here
 [project.optional-dependencies]
 test = ["pytest"]
 
@@ -35,6 +36,15 @@ packages = ["project_template"]
 
 [tool.setuptools.dynamic]
 version = {attr = "project_template.version.__version__"}
+
+# Auto-discover all packages inside the repo root
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["project_template*"]
+
+# Any non *.py files that must be bundled with the package must be listed here. ** and * wildcards can be used
+[tool.setuptools.package-data]
+project_template = []
 
 [tool.pytest.ini_options]
 pythonpath = "."
