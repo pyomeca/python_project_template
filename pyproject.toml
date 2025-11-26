@@ -34,7 +34,7 @@ Tracker = "https://github.com/pyomeca/python_project_template/issues"
 packages = ["project_template"]
 
 [tool.setuptools.dynamic]
-version = {attr = "project_template.__version__"}
+version = {attr = "project_template.version.__version__"}
 
 [tool.pytest.ini_options]
 pythonpath = "."
