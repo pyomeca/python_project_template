@@ -23,7 +23,7 @@ The easiest and most efficient way is to use an anaconda virtual environment and
 - Install `project_template` dependencies with:
 
 ```bash
-conda env create -f environment.yml
+conda create -n project_template
 conda activate project_template
 conda install pip -cconda-forge
 pip install . && pip uninstall -y project_template
