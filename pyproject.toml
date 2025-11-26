@@ -31,16 +31,13 @@ Documentation = "https://github.com/pyomeca/python_project_template/tree/main#re
 Source = "https://github.com/pyomeca/python_project_template"
 Tracker = "https://github.com/pyomeca/python_project_template/issues"
 
-[tool.setuptools]
-packages = ["project_template"]
-
-[tool.setuptools.dynamic]
-version = {attr = "project_template.version.__version__"}
-
 # Auto-discover all packages inside the repo root
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["project_template*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "project_template.version.__version__"}
 
 # Any non *.py files that must be bundled with the package must be listed here. ** and * wildcards can be used
 [tool.setuptools.package-data]
